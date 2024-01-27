@@ -63,3 +63,5 @@ Tech Used
 6. cookie4
 
 Github Repo
+1. git commit -m "first commit"
+2. git branch -M main
