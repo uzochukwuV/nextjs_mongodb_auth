@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
+import { SECRET_JWT_TOKEN } from "@/constants";
 
 
 
@@ -38,9 +39,8 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       email: user.email,
     };
 
-    const secret: string = `${process.env.JWT_TOKEN_SECRET}`;
 
-    const token = jwt.sign(tokenData, secret, {
+    const token = jwt.sign(tokenData, SECRET_JWT_TOKEN, {
       expiresIn: "1d",
     });
 

@@ -44,6 +44,7 @@ Errors Encountered
 2. try catch error unable to access message, use conditional statement to check if instanceof Error object
 3. await errror, always use await on Promise functions else it will be skipped
 4. setting cookies with nextapirequest , set-cookie, max-age: 100000, httpOnly
+5. jwt decoding , jwt decoding for getting data
 
 
 What i learnt during the course
@@ -53,10 +54,11 @@ What i learnt during the course
 3. creation of Models schema for mongodb
 4. axios request to sign up api
 5. How to set cookies NextResponse cookies and signing your data with jwt.sign
+6. how to use jwt from setting sessions 
 
 Tech Used
 1. React
-2. react-toasr
+2. react-toast
 3. axios
 4. jwt_webtoken
 4. mongoose mongodb
@@ -65,3 +67,68 @@ Tech Used
 Github Repo
 1. git commit -m "first commit"
 2. git branch -M main
+
+
+
+
+Other Significant Codes
+
+for Cookies:
+
+/*
+Homepage.getInitialProps = ({ req }) => {
+	const isServer = !!req
+	const isBrowser = !req
+
+	if (isServer) {
+		// Get/set cookies server-side
+	} else {
+		// Get/set cookies client-side
+	}
+}
+*/
+
+
+/*
+
+Homepage.getServerSideProps = ({ req, res }) => {
+	// Create a cookies instance
+	const cookies = new Cookies(req, res)
+
+	// Get a cookie
+	cookies.get('myCookieName')
+
+	// Set a cookie
+	cookies.set('myCookieName', 'some-value', {
+		httpOnly: true, // true by default
+	})
+
+	// Delete a cookie
+	cookies.set('myCookieName')
+}
+*/
+
+2. Using getInialPageProps
+## Page.getInitialProps = async ({req, res}: NextPageContext) => {
+    const data = cookie.parse(req ? req.headers.cookie || '': document.cookie)
+
+    if(res){
+        if(Object.keys(data).length === 0 && data.constructor === Object){
+            res.writeHead(301, {location:'/'})
+            res.end()
+        }
+    }
+
+    return {
+        data: data && data.token,
+    }
+}
+
+## for jwt
+if(data){
+        const json = jwt.decode(data) as {[key:string]: string}
+        setUser(json)
+      }else {
+        console.log('sth went wrong??');
+        
+      }

@@ -1,0 +1,1 @@
+export const SECRET_JWT_TOKEN: string = `${process.env.JWT_TOKEN_SECRET}`;
