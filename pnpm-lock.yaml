@@ -5,12 +5,21 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@types/cookie_js':
+    specifier: ^1.2.4
+    version: 1.2.4
   axios:
     specifier: ^1.6.7
     version: 1.6.7
   bcrypt:
     specifier: ^5.1.1
     version: 5.1.1
+  cookie.js:
+    specifier: ^7.0.1
+    version: 7.0.1
+  cookie_js:
+    specifier: ^1.4.2
+    version: 1.4.2
   jsonwebtoken:
     specifier: ^9.0.2
     version: 9.0.2
@@ -360,6 +369,10 @@ packages:
   /@types/cookie@0.6.0:
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
     dev: true
+
+  /@types/cookie_js@1.2.4:
+    resolution: {integrity: sha512-2xXUeSpj7kga1YsRqdUdUMxW8cXRj6KIIN01PVZymJbop5D3rawYgvzcUyJ9Yv+k1HlYHCs+8G8KewvOmp4l7Q==}
+    dev: false
 
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
@@ -859,9 +872,17 @@ packages:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
     dev: false
 
+  /cookie.js@7.0.1:
+    resolution: {integrity: sha512-Ncmby6DSiG2gZ64+QqzC8Jo88Ws5R5MecnivrSlbE32EJzAEIXNxYk7tFXOZjCqouCtW6apypNmudqIWzB3ZfA==}
+    dev: false
+
   /cookie@0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /cookie_js@1.4.2:
+    resolution: {integrity: sha512-hET/a12Sl4L6Oix5G4ZmLY75XKnN8+zE9cGl4T3rSpWh61cCKuA1yl3Uvbdw6bRPUhhWuFQbkMhNFw0BWNgj5w==}
     dev: false
 
   /cross-spawn@7.0.3:

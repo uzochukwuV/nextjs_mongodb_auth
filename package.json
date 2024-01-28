@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/cookie_js": "^1.2.4",
     "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
+    "cookie.js": "^7.0.1",
+    "cookie_js": "^1.4.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
