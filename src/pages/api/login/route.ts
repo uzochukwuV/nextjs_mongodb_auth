@@ -17,7 +17,6 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   await connectToDB();
   try {
     const data = await req.body;
-    console.log(data);
     
     const { email, password } = data;
 
@@ -45,6 +44,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     });
 
     const response = res
+      .status(201)
       .setHeader(
         "Set-Cookie",
         serialize("token", token, {httpOnly: true, maxAge: 103600,path:'/'})
@@ -54,7 +54,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       
     return response;
   } catch (error) {
-    console.log(error);
+    
     if (error instanceof Error) {
       return res.json({ error: error.message });
     }

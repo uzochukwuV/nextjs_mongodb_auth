@@ -26,11 +26,16 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-    background: black;
+    /* background: black; */
+    background: var(--background-end-rgb);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+div.curved-bottom {
+  border-bottom-left-radius: 80% 8%;
+  border-bottom-right-radius: 80% 8%;
 }

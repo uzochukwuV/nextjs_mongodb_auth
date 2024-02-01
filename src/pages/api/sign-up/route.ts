@@ -25,7 +25,7 @@ export async function POST(req:NextApiRequest, res:NextApiResponse) {
         return res.json({message:'User created Successfully', success:true, savedUser})
         
     }catch(e){
-        return res.json({error:'could not create User'});
+        return res.json({error:'could not create User', e});
     }
 
     return req

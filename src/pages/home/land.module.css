@@ -1,0 +1,16 @@
+
+
+.land-hero::before, .land-hero::after {
+    position: absolute;
+    width: calc(100vw * 5);
+    border-radius: calc(100vw * 5);
+    height: calc(100vw * 5);
+    background-color: brown;
+    display: block;
+}
+
+.curved-bottom {
+    /* Curved corners */
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+}
