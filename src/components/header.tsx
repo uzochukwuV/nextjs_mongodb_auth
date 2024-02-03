@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 function Header() {
   return (
-    <header className={`bg-black sm:px-16 md:px-20 px-8 z-20 ${inter.className}`}>
+    <header className={`bg-black sm:px-16 md:px-20 px-8 z-20`}>
         <div className="block w-full relative">
           <div className="flex justify-between items-center text-xs py-1">
             <div className="flex gap-1 items-center justify-center">

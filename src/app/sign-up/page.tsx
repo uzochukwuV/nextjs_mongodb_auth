@@ -39,7 +39,7 @@ export default function Page(){
         const body = {email,username:user, password, isVerified:false, isAdmin:false}
         
         try {
-            const res = await axios.post('/api/sign-up/route', body)
+            const res = await axios.post('/api/sign-up/', body)
 
             if(res.data.message){
             router.push('/login')

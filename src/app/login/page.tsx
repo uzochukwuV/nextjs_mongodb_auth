@@ -22,6 +22,8 @@ export default function Page() {
     if (password.length > 6 && email.length > 2) {
       setButtonDisabled(false);
     }
+    axios.get('/api').then((res)=> console.log(res.data)
+    )
   }, []);
 
   const loginHandler = async () => {
@@ -29,9 +31,9 @@ export default function Page() {
     const body = { email, password };
 
     try {
-      const res = await axios.post("/api/login/route", body);
+      const res = await axios.post("/api/login", body);
 
-      if (res.status === 201) {
+      if (res.status === 200) {
         notifySuccess();
         router.push("/dashboard");
       } else {
@@ -41,6 +43,8 @@ export default function Page() {
       if (error instanceof Error) {
         notifyError(error.message);
       }
+      console.log(error);
+      
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +59,7 @@ export default function Page() {
         <h1 className="font-medium text-center py-3 text-3xl">
           Login Now{" "}
           {isLoading && (
-            <div className="absolute top-44 right-1/2 left-1/2 -translate-x-10 rounded-lg z-10 backdrop-invert w-20  h-20">
+            <div className="absolute top-44 right-0 left-0 -translate-x-10 rounded-lg z-10 backdrop-blur-sm w-full  h-full">
               <PropagateLoader className=" text-white h-10 w-10 inline-block mx-auto z-50" />
             </div>
           )}

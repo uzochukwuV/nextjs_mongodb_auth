@@ -1,7 +1,7 @@
 
 import { connectToDB } from "@/helpers/mongoose";
-import { NextApiResponse, NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+
+
 
 import User from "@/models/user";
 import bcrypt from "bcrypt";
@@ -11,25 +11,27 @@ import { serialize } from "cookie";
 import { SECRET_JWT_TOKEN } from "@/constants";
 
 
-
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export const dynamic = 'force-dynamic'
+export async function POST(req: Request) {
     
   await connectToDB();
   try {
-    const data = await req.body;
+    const body = await req.json()
+    console.log(body);
     
-    const { email, password } = data;
-
+    const { email, password } = body;
+    console.log(email);
+    
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ error: "User not found" });
+      return Response.json({message: 'Invalid Email, not Registered'}, {status:401})
     }
 
     const isValid = await bcrypt.compare(password, user.password);
     console.log(isValid);
     
     if (!isValid) {
-      return res.status(401).json({ error: "Invalid Credentials" });
+      return Response.json({message: 'Invalid credentials'}, {status:401})
     }
 
     const tokenData = {
@@ -43,22 +45,15 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       expiresIn: "1d",
     });
 
-    const response = res
-      .status(201)
-      .setHeader(
-        "Set-Cookie",
-        serialize("token", token, {httpOnly: true, maxAge: 103600,path:'/'})
-      )
-      .json({ message: "Logged In successfully", success: true });
+    const response = Response.json({message: "Logged In successfully", success: true }, {status:200, headers: { 'Set-Cookie': `${serialize("token", token, {httpOnly: true, maxAge: 103600,path:'/'})}` }})
       
       
     return response;
   } catch (error) {
     
     if (error instanceof Error) {
-      return res.json({ error: error.message });
+      return Response.json({error})
     }
   }
 }
 
-export default POST;

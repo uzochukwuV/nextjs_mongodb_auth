@@ -1,46 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+'use client'
+
 import "./land.module.css";
-import { NextPageContext } from "next";
-import cookie from "cookie";
+
 
 import { useRouter } from "next/navigation";
-import jwt from "jsonwebtoken";
+
 import { MdChevronRight } from "react-icons/md";
 
 import Image from "next/image";
 import Card from "@/components/card";
-import Link from "next/link";
+
 import Header from "@/components/header";
 
-Land.getInitialProps = async ({ req, res }: NextPageContext) => {
-  const data = cookie.parse(req ? req?.headers.cookie || "" : document.cookie);
-  console.log(data);
 
-  if (res) {
-    if (Object.keys(data).length == 0 && data.constructor == Object) {
-      res.writeHead(301);
-      res.end();
-    }
-  }
-  return { data: data && data.token };
-};
 
-function Land({ data }: { data: string }) {
-  const [nav, setNav] = useState(false);
-  var navbar = useRef<HTMLDivElement>(null);
-  const [user, setUser] = useState<{ [key: string]: string }>({});
+function Page() {
   const router = useRouter();
-  const [rdata, setData] = useState(data);
+  
 
-  useEffect(() => {
-    console.log(rdata);
-
-    if (rdata) {
-      const json = jwt.decode(data!) as { [key: string]: string };
-      setUser(json);
-    } else {
-    }
-  }, [rdata]);
 
   return (
     <div className="absolute top-0 bg-transparent left-0 right-0">
@@ -61,8 +38,8 @@ function Land({ data }: { data: string }) {
                 Choose from the best Masters of Forex and diversify your
                 portfolio
               </p>
-              <button className="flex gap-2 items-center bg-yellow-600 px-6 py-2">
-                Join FirmStock <MdChevronRight />
+              <button className="flex gap-2 items-center bg-yellow-600 px-6 py-2 hover:bg-yellow-700 group">
+                Join FirmStock <MdChevronRight className=" group-hover:translate-x-3 transition-transform font-bold" />
               </button>
             </div>
 
@@ -78,7 +55,7 @@ function Land({ data }: { data: string }) {
                 alt="1"
                 width={40}
                 height={40}
-                className="mx-auto pb-2"
+                className="mx-auto pb-2 hover:scale-125"
               />
               <p className="font-medium text-sm">
                 Best broker trading conditions
@@ -90,7 +67,7 @@ function Land({ data }: { data: string }) {
                 alt="1"
                 width={40}
                 height={40}
-                className="mx-auto pb-2"
+                className="mx-auto pb-2 hover:scale-125"
               />
               <p className="font-medium text-sm">
                 Wide range of trading options and currencies
@@ -102,7 +79,7 @@ function Land({ data }: { data: string }) {
                 alt="1"
                 width={40}
                 height={40}
-                className="mx-auto pb-2"
+                className="mx-auto pb-2 hover:scale-125"
               />
               <p className="font-medium text-sm">
                 Free educational support and consultancy
@@ -114,7 +91,7 @@ function Land({ data }: { data: string }) {
                 alt="1"
                 width={40}
                 height={40}
-                className="mx-auto pb-2"
+                className="mx-auto pb-2 hover:scale-125"
               />
               <p className="font-medium text-sm">
                 Established with multiple regulatory licenses
@@ -126,7 +103,7 @@ function Land({ data }: { data: string }) {
                 alt="1"
                 width={40}
                 height={40}
-                className="mx-auto pb-2"
+                className="mx-auto pb-2 hover:scale-125"
               />
               <p className="font-medium text-sm">
                 Free trading strategy ideas from market experts
@@ -227,9 +204,9 @@ Our live chat support is online 24 hours every day and the team is ready to give
   );
 }
 
-export default Land;
+export default Page;
 
-const footer = () => {
+const Footer = () => {
   return (
     <>
       FXTM is an international online broker offering financial services in
@@ -258,3 +235,5 @@ const footer = () => {
     </>
   );
 };
+
+export {Page as Home, Footer}
